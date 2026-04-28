@@ -9,6 +9,7 @@ Thumbs.db
 
 # Sources, briefs, originals (local only)
 .src/
+source/
 
 # Local Claude notes
 CLAUDE.local.md

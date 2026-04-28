@@ -372,6 +372,47 @@
   .cta-meta { grid-column: span 12; margin-top: 32px; font-family: var(--mono); font-size: 13px; color: var(--muted); display: flex; gap: 24px; flex-wrap: wrap; }
   .cta-meta b { color: var(--accent); font-weight: 500; }
 
+  /* ---------- TEAM (crew cards) ---------- */
+  .crew-id {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+  }
+  .crew-id::before { content: "// "; color: var(--muted); }
+  .member {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+  }
+  .member h3 {
+    font-size: 24px;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+    font-weight: 700;
+  }
+  .member .role {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .member ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .member li {
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--line);
+    color: var(--muted);
+  }
+  .member li b { color: var(--text); font-weight: 500; }
+  .member li a { color: var(--accent); }
+
   /* ---------- FOOTER ---------- */
   footer {
     border-top: 1px solid var(--line);
@@ -713,6 +754,54 @@
             <li>Никакой демократии в критических ситуациях</li>
           </ul>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TEAM ========== -->
+<section id="team">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ team</span><span class="tag">{ core crew }</span></div>
+      <h2>Команда</h2>
+    </div>
+
+    <div class="col-4">
+      <div class="crew-id">crew / captain · 01</div>
+      <div class="member">
+        <h3>Никита Лобушкин</h3>
+        <div class="role">captain · co-owner</div>
+        <ul>
+          <li><b>опыт</b> — 7 лет на воде</li>
+          <li><b>дизайнер</b> — 30+ лет</li>
+          <li><b>регионы</b> — Греция, Турция, Черногория</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="crew-id">crew / co-organizer · 02</div>
+      <div class="member">
+        <h3>Артур Пинчук</h3>
+        <div class="role">co-organizer · IT &amp; ground ops</div>
+        <ul>
+          <li><b>tech entrepreneur</b> — 20+ лет</li>
+          <li><b>founder</b> — <a href="https://mind-dev.com" rel="noopener">mind-dev.com</a></li>
+          <li><b>Ilka</b> — co-owner</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-4">
+      <div class="crew-id">crew / co-organizer · 03</div>
+      <div class="member">
+        <h3>Габиль Тагиев</h3>
+        <div class="role">co-organizer</div>
+        <ul>
+          <li><b>tech entrepreneur</b></li>
+          <li><b>@mycelium_dao</b></li>
+        </ul>
       </div>
     </div>
   </div>

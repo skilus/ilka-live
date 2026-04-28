@@ -220,6 +220,28 @@
   blockquote p { margin: 4px 0; color: var(--muted); }
   blockquote p::before { content: "> "; color: var(--accent); }
 
+  /* ---------- TOOLTIP ---------- */
+  .has-tip { position: relative; }
+  .has-tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 11px;
+    white-space: nowrap;
+    padding: 5px 10px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 120ms;
+    z-index: 10;
+  }
+  .has-tip:hover::after { opacity: 1; }
+  @media (hover: none) { .has-tip::after { display: none; } }
+
   /* ---------- ROLES / PROCESS GRID ---------- */
   .process {
     grid-column: span 12;
@@ -1031,11 +1053,11 @@
     </div>
 
     <div class="process">
-      <div><div class="id">role / 01</div><div class="name">navigator</div></div>
-      <div><div class="id">role / 02</div><div class="name">boatswain</div></div>
-      <div><div class="id">role / 03</div><div class="name">cook</div></div>
-      <div><div class="id">role / 04</div><div class="name">deck</div></div>
-      <div><div class="id">role / 05</div><div class="name">product</div></div>
+      <div class="has-tip" data-tip="курс, карты, решения по маршруту"><div class="id">role / 01</div><div class="name">navigator</div></div>
+      <div class="has-tip" data-tip="снасти, паруса, палуба"><div class="id">role / 02</div><div class="name">boatswain</div></div>
+      <div class="has-tip" data-tip="питание, запасы, камбуз"><div class="id">role / 03</div><div class="name">cook</div></div>
+      <div class="has-tip" data-tip="вахта, порядок, якорь"><div class="id">role / 04</div><div class="name">deck</div></div>
+      <div class="has-tip" data-tip="фокус команды, синк, демо"><div class="id">role / 05</div><div class="name">product</div></div>
     </div>
   </div>
 </section>

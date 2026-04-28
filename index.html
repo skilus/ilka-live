@@ -220,28 +220,6 @@
   blockquote p { margin: 4px 0; color: var(--muted); }
   blockquote p::before { content: "> "; color: var(--accent); }
 
-  /* ---------- PROCESS ---------- */
-  .process {
-    grid-column: span 12;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    border: 1px solid var(--line);
-  }
-  .process > div {
-    padding: 32px 24px;
-    border-right: 1px solid var(--line);
-    font-family: var(--mono);
-  }
-  .process > div:last-child { border-right: 0; }
-  .process .id { color: var(--accent); font-size: 12px; }
-  .process .name { font-size: 22px; color: var(--text); margin-top: 12px; font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; }
-  @media (max-width: 880px) {
-    .process { grid-template-columns: 1fr; }
-    .process > div { border-right: 0; border-bottom: 1px solid var(--line); }
-    .process > div:last-child { border-bottom: 0; }
-  }
-
   /* ---------- PHASES ---------- */
   .phases-grid {
     grid-column: span 12;
@@ -571,24 +549,6 @@
         <p>это про условия и маршрут</p>
         <p>продукт — ответственность команды</p>
       </blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- ========== СЕКЦИЯ 3 — ПРОЦЕСС ========== -->
-<section id="process">
-  <div class="grid">
-    <div class="col-12">
-      <div class="label"><span>/ как это будет</span><span class="tag">{ процесс, не план }</span></div>
-      <h2>Процесс</h2>
-    </div>
-
-    <div class="process">
-      <div><div class="id">[01]</div><div class="name">Идея</div></div>
-      <div><div class="id">[02]</div><div class="name">Сборка</div></div>
-      <div><div class="id">[03]</div><div class="name">Критика</div></div>
-      <div><div class="id">[04]</div><div class="name">Тест</div></div>
-      <div><div class="id">[05]</div><div class="name">Демо</div></div>
     </div>
   </div>
 </section>

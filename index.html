@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ilka.live — crew system v0.1 · 12 days · Corfu</title>
+<meta name="description" content="12 дней на яхте Ilka в Корфу. 6 builders, один продукт, 15–27 мая. €500 + общее. Не отпуск." />
+<link rel="canonical" href="https://ilka.live/" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta name="theme-color" content="#070B12" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ilka.live/" />
+<meta property="og:title" content="Ilka.live — 12 дней на яхте, сборка продукта" />
+<meta property="og:description" content="Корфу. 6 builders. Один продукт. 15–27 мая. €500 + общее." />
+<meta property="og:image" content="https://ilka.live/assets/og.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ilka.live — 12 дней на яхте, сборка продукта" />
+<meta name="twitter:description" content="Корфу. 6 builders. Один продукт. 15–27 мая." />
+<meta name="twitter:image" content="https://ilka.live/assets/og.jpg" />
+<style>
+  :root {
+    --bg: #070B12;
+    --bg-2: #0B1320;
+    --line: #14202F;
+    --text: #FFFFFF;
+    --muted: #6B7A8C;
+    --accent: #2EE6FF;
+    --warn: #FFB36B;
+    --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, "Inter", system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ---------- LAYOUT ---------- */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  section {
+    border-top: 1px solid var(--line);
+    padding: 96px 0;
+  }
+  section:first-of-type { border-top: 0; }
+
+  .col-12 { grid-column: span 12; }
+  .col-8  { grid-column: span 8; }
+  .col-6  { grid-column: span 6; }
+  .col-4  { grid-column: span 4; }
+  .col-3  { grid-column: span 3; }
+
+  @media (max-width: 880px) {
+    .grid { padding: 0 20px; gap: 16px; }
+    section { padding: 64px 0; }
+    .col-8, .col-6, .col-4, .col-3 { grid-column: span 12; }
+  }
+
+  /* ---------- TYPE ---------- */
+  h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 24px;
+  }
+  h1 { font-size: clamp(40px, 6vw, 84px); line-height: 1.02; }
+  h2 { font-size: clamp(28px, 3.6vw, 48px); line-height: 1.05; }
+  h3 { font-size: 20px; line-height: 1.3; margin-bottom: 12px; }
+  p  { margin: 0 0 16px; max-width: 56ch; color: var(--text); }
+
+  .mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; }
+  .muted { color: var(--muted); }
+  .accent { color: var(--accent); }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-transform: lowercase;
+    margin-bottom: 32px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .label .tag {
+    color: var(--accent);
+    border: 1px solid var(--line);
+    padding: 2px 8px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 0;
+    border-top: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .hero-bg picture, .hero-bg img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center right;
+    filter: saturate(0.85);
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 80% at 70% 30%, rgba(46,230,255,0.05), transparent 60%),
+      linear-gradient(180deg, rgba(7,11,18,0.55) 0%, rgba(7,11,18,0.75) 50%, rgba(7,11,18,0.95) 100%),
+      linear-gradient(90deg, rgba(7,11,18,0.85) 0%, rgba(7,11,18,0.35) 60%, rgba(7,11,18,0.6) 100%);
+    z-index: 1;
+  }
+  .hero .grid {
+    position: relative;
+    z-index: 1;
+    align-content: end;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    width: 100%;
+  }
+  .hero-top {
+    grid-column: span 12;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: auto;
+    padding-bottom: 80px;
+  }
+  .brand { font-family: var(--mono); font-size: 13px; color: var(--text); }
+  .brand .dot { color: var(--accent); }
+
+  .hero h1 .brace { color: var(--muted); font-weight: 400; }
+  .hero h1 small { display:block; font-size: 0.45em; font-weight: 500; color: var(--muted); margin-top: 16px; letter-spacing: 0; }
+
+  .hero-meta {
+    grid-column: span 5;
+    margin-top: 48px;
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .hero-meta div { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line); }
+  .hero-meta div span:first-child { width: 120px; color: var(--muted); }
+  .hero-meta div span:last-child  { color: var(--text); }
+
+  .hero-cta { grid-column: span 7; margin-top: 48px; display: flex; align-items: end; justify-content: flex-start; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 28px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 14px;
+    background: transparent;
+    cursor: pointer;
+    transition: background 120ms linear, color 120ms linear;
+  }
+  .btn:hover { background: var(--accent); color: var(--bg); text-decoration: none; }
+  .btn .arrow { transition: transform 120ms ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  .hero-status {
+    grid-column: span 12;
+    margin-top: 64px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .hero-status span b { color: var(--accent); font-weight: 500; }
+
+  @media (max-width: 880px) {
+    .hero-meta, .hero-cta { grid-column: span 12; }
+    .hero-cta { margin-top: 24px; }
+  }
+
+  /* ---------- BLOCKS ---------- */
+  .blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; grid-column: span 12; }
+  .blocks > div { border-top: 1px solid var(--line); padding-top: 20px; }
+  .blocks h3 { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 500; }
+  .blocks p { color: var(--text); }
+  @media (max-width: 880px) { .blocks { grid-template-columns: 1fr; } }
+
+  blockquote {
+    margin: 32px 0 0;
+    padding: 0;
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 14px;
+    border: 0;
+  }
+  blockquote p { margin: 4px 0; color: var(--muted); }
+  blockquote p::before { content: "> "; color: var(--accent); }
+
+  /* ---------- PROCESS ---------- */
+  .process {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .process > div {
+    padding: 32px 24px;
+    border-right: 1px solid var(--line);
+    font-family: var(--mono);
+  }
+  .process > div:last-child { border-right: 0; }
+  .process .id { color: var(--accent); font-size: 12px; }
+  .process .name { font-size: 22px; color: var(--text); margin-top: 12px; font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; }
+  @media (max-width: 880px) {
+    .process { grid-template-columns: 1fr; }
+    .process > div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .process > div:last-child { border-bottom: 0; }
+  }
+
+  /* ---------- SYSTEM ---------- */
+  .sys-grid { grid-column: span 12; display: grid; grid-template-columns: repeat(2, 1fr); gap: 48px; }
+  @media (max-width: 880px) { .sys-grid { grid-template-columns: 1fr; gap: 32px; } }
+  .sys-grid h3 { font-family: var(--mono); font-size: 13px; color: var(--muted); font-weight: 500; margin-bottom: 16px; }
+  .sys-grid h3::before { content: "/ "; color: var(--accent); }
+  .sys-grid ul { list-style: none; margin: 0; padding: 0; font-family: var(--mono); font-size: 14px; }
+  .sys-grid ul li { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  .sys-grid ul li span:first-child { color: var(--muted); width: 180px; }
+  .sys-grid ul li span:last-child  { color: var(--text); }
+  .sys-grid ul.plain li { display: block; color: var(--text); }
+  .sys-grid ul.plain li::before { content: "— "; color: var(--accent); }
+
+  .output {
+    grid-column: span 12;
+    margin-top: 48px;
+    padding: 32px;
+    border: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--text);
+  }
+  .output b { color: var(--accent); font-weight: 500; }
+
+  /* ---------- LIST GROUPS ---------- */
+  .list-group { grid-column: span 12; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  @media (max-width: 880px) { .list-group { grid-template-columns: 1fr; } }
+  .list-group h3 { font-family: var(--mono); color: var(--accent); font-size: 13px; font-weight: 500; }
+  .list-group ul { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: 14px; color: var(--text); }
+  .list-group li { padding: 6px 0; border-bottom: 1px dashed var(--line); }
+
+  /* ---------- BOAT SPECS ---------- */
+  .specs { grid-column: span 6; }
+  .specs-text { grid-column: span 6; }
+  @media (max-width: 880px) { .specs, .specs-text { grid-column: span 12; } }
+  .specs ul { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: 14px; }
+  .specs li { display: flex; padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .specs li span:first-child { width: 140px; color: var(--muted); }
+  .specs li span:last-child { color: var(--text); }
+
+  /* ---------- MEDIA (image + mono caption) ---------- */
+  .media { grid-column: span 6; }
+  .media .frame {
+    position: relative;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: saturate(0.85) contrast(1.02);
+  }
+  .media .frame-meta {
+    position: absolute;
+    top: 8px; left: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    background: rgba(7,11,18,0.7);
+    padding: 2px 6px;
+    border: 1px solid var(--line);
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+  }
+  .media .caption {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .media .caption b { color: var(--text); font-weight: 500; }
+  @media (max-width: 880px) { .media { grid-column: span 12; } }
+
+  .portrait .frame {
+    aspect-ratio: 4 / 5;
+    border: 0;
+    background: var(--bg);
+  }
+  .portrait img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center 30%;
+    filter: saturate(0.6) contrast(1.08) brightness(0.95);
+  }
+  .portrait .frame-meta {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    top: 4px;
+    left: 0;
+    color: var(--accent);
+  }
+  .portrait .frame-meta::before { content: "// "; color: var(--muted); }
+
+  /* ---------- CONDITIONS ---------- */
+  .cond-grid { grid-column: span 12; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border: 1px solid var(--line); }
+  .cond-grid > div { padding: 28px; border-right: 1px solid var(--line); }
+  .cond-grid > div:last-child { border-right: 0; }
+  .cond-grid h3 { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 16px; }
+  .cond-grid .price { font-family: var(--mono); font-size: 32px; color: var(--accent); margin-bottom: 8px; }
+  .cond-grid ul { list-style: none; padding: 0; margin: 0; font-family: var(--mono); font-size: 13px; color: var(--text); }
+  .cond-grid li { padding: 4px 0; }
+  .cond-grid li::before { content: "+ "; color: var(--accent); }
+  .cond-grid .not li::before { content: "− "; color: var(--warn); }
+  @media (max-width: 880px) {
+    .cond-grid { grid-template-columns: 1fr; }
+    .cond-grid > div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .cond-grid > div:last-child { border-bottom: 0; }
+  }
+
+  /* ---------- NOT FOR YOU ---------- */
+  .negative ul { list-style: none; padding: 0; margin: 0; }
+  .negative li {
+    font-family: var(--mono);
+    font-size: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text);
+  }
+  .negative li::before { content: "× "; color: var(--warn); }
+
+  /* ---------- CTA ---------- */
+  .cta { text-align: left; }
+  .cta h2 { font-size: clamp(48px, 8vw, 120px); }
+  .cta-meta { grid-column: span 12; margin-top: 32px; font-family: var(--mono); font-size: 13px; color: var(--muted); display: flex; gap: 24px; flex-wrap: wrap; }
+  .cta-meta b { color: var(--accent); font-weight: 500; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  footer .grid > div { grid-column: span 6; }
+  footer .grid > div + div { text-align: right; }
+  @media (max-width: 880px) {
+    footer .grid > div, footer .grid > div + div { grid-column: span 12; text-align: left; }
+  }
+
+  /* ---------- SUBTLE GLITCH (text only, ≤20%) ---------- */
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+  .glitch::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 1px; top: 0;
+    color: var(--accent);
+    mix-blend-mode: screen;
+    opacity: 0;
+    pointer-events: none;
+    animation: glitch 7s steps(1) infinite;
+  }
+  @keyframes glitch {
+    0%, 96%, 100% { opacity: 0; transform: translate(0,0); }
+    96.5% { opacity: 0.6; transform: translate(-1px, 0); }
+    97%   { opacity: 0; }
+    98%   { opacity: 0.4; transform: translate(1px, -1px); }
+    98.5% { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .glitch::before { animation: none; }
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+<main>
+
+<!-- ========== HERO ========== -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <picture>
+      <source type="image/avif"
+        srcset="assets/ilka-it-480.avif 480w, assets/ilka-it-800.avif 800w, assets/ilka-it-1200.avif 1200w, assets/ilka-it-1600.avif 1600w"
+        sizes="100vw">
+      <source type="image/webp"
+        srcset="assets/ilka-it-480.webp 480w, assets/ilka-it-800.webp 800w, assets/ilka-it-1200.webp 1200w, assets/ilka-it-1600.webp 1600w"
+        sizes="100vw">
+      <img src="assets/ilka-it-1200.jpg"
+        srcset="assets/ilka-it-480.jpg 480w, assets/ilka-it-800.jpg 800w, assets/ilka-it-1200.jpg 1200w, assets/ilka-it-1600.jpg 1600w"
+        sizes="100vw" alt="" decoding="async" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="grid">
+
+    <div class="hero-top">
+      <div class="brand">ilka<span class="dot">.</span>live</div>
+      <div class="mono muted">v0.1 / crew system</div>
+    </div>
+
+    <div class="col-12">
+      <div class="label"><span class="tag">{ это не отпуск }</span></div>
+      <h1 id="hero-title">
+        <span class="glitch" data-text="12 дней на яхте">12 дней на яхте</span><br>
+        <span class="brace">— создание продукта</span>
+        <small>никто не будет вас вести</small>
+      </h1>
+    </div>
+
+    <div class="hero-meta col-4">
+      <div><span>даты</span><span>15–27 мая</span></div>
+      <div><span>старт</span><span>Корфу</span></div>
+      <div><span>длительность</span><span>12 дней</span></div>
+      <div><span>команда</span><span>6</span></div>
+      <div><span>формат</span><span>жизнь + работа</span></div>
+      <div><span>стоимость</span><span>€500 + общее</span></div>
+    </div>
+
+    <div class="hero-cta col-8">
+      <a class="btn" href="#cta">[ В команду <span class="arrow">→</span> ]</a>
+    </div>
+
+    <div class="hero-status">
+      <span>system: <b>active</b></span>
+      <span>mode: <b>build</b></span>
+      <span>state: <b>unstable</b></span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 2 — ЧТО ЭТО ========== -->
+<section id="what">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ что это</span><span class="tag">{ среда }</span></div>
+      <h2>Это ограниченная среда.</h2>
+    </div>
+
+    <div class="blocks">
+      <div>
+        <h3>01 / Яхта</h3>
+        <p>Живёте и работаете на лодке. Это ограниченная среда.</p>
+      </div>
+      <div>
+        <h3>02 / Команда</h3>
+        <p>6 человек. Роли важнее предпочтений.</p>
+      </div>
+      <div>
+        <h3>03 / Продукт</h3>
+        <p>Одна идея. Один фокус. Один результат.</p>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <blockquote>
+        <p>никаких лекций</p>
+        <p>никакого сценария</p>
+        <p>только работа</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 3 — ПРОЦЕСС ========== -->
+<section id="process">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ как это будет</span><span class="tag">{ процесс, не план }</span></div>
+      <h2>Процесс</h2>
+    </div>
+
+    <div class="process">
+      <div><div class="id">[01]</div><div class="name">Идея</div></div>
+      <div><div class="id">[02]</div><div class="name">Сборка</div></div>
+      <div><div class="id">[03]</div><div class="name">Критика</div></div>
+      <div><div class="id">[04]</div><div class="name">Тест</div></div>
+      <div><div class="id">[05]</div><div class="name">Демо</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 4 — СИСТЕМА ========== -->
+<section id="system">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ система</span></div>
+      <h2><span class="glitch" data-text="System Settings">System Settings</span></h2>
+    </div>
+
+    <div class="sys-grid">
+      <div>
+        <h3>состояние</h3>
+        <ul>
+          <li><span>капитан</span><span>финальное решение</span></li>
+          <li><span>погода</span><span>непредсказуема</span></li>
+          <li><span>маршрут</span><span>адаптивный</span></li>
+          <li><span>фокус</span><span>один продукт</span></li>
+          <li><span>энергия</span><span>ограничена</span></li>
+          <li><span>среда</span><span>нестабильна</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>принципы</h3>
+        <ul>
+          <li><span>безопасность</span><span>&gt; всё</span></li>
+          <li><span>роли</span><span>&gt; предпочтения</span></li>
+          <li><span>результат</span><span>&gt; процесс</span></li>
+          <li><span>просто</span><span>&gt; сложно</span></li>
+          <li><span>сделано</span><span>&gt; обсуждено</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>риски → ответ</h3>
+        <ul>
+          <li><span>потеря фокуса</span><span>→ одна задача</span></li>
+          <li><span>переосмысление</span><span>→ коммит, тест</span></li>
+          <li><span>распад команды</span><span>→ daily sync</span></li>
+          <li><span>падение энергии</span><span>→ сон, еда, пауза</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>результат</h3>
+        <ul class="plain">
+          <li>вы либо запустите</li>
+          <li>либо поймёте, почему нет</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 5 — ЖИЗНЬ НА ЛОДКЕ ========== -->
+<section id="life">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ runtime</span><span class="tag">{ environment }</span></div>
+      <h2>Системное окружение</h2>
+      <p class="mono muted" style="margin-bottom:0; max-width:none;">жизнь на борту — простыми словами: что общее, что ограничено, как идёт день</p>
+    </div>
+
+    <div class="list-group">
+      <div>
+        <h3>общее (shared)</h3>
+        <ul>
+          <li>Пространство</li>
+          <li>Еда</li>
+          <li>Ответственность</li>
+        </ul>
+      </div>
+      <div>
+        <h3>ресурсы (resources)</h3>
+        <ul>
+          <li>Вода — ограничена</li>
+          <li>Электричество — ограничено</li>
+          <li>Интернет — Starlink, 250 Mbps</li>
+        </ul>
+      </div>
+      <div>
+        <h3>день (loop)</h3>
+        <ul>
+          <li>Сон в каютах</li>
+          <li>Готовим вместе</li>
+          <li>Дежурства по очереди</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <blockquote>
+        <p>это не комфортно</p>
+        <p>это реально</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 6 — ЛОДКА ========== -->
+<section id="boat">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ лодка</span></div>
+      <h2>Лодка: Ilka</h2>
+    </div>
+
+    <div class="specs">
+      <ul>
+        <li><span>лодка</span><span>Ilka</span></li>
+        <li><span>тип</span><span>Кеч (Ketch)</span></li>
+        <li><span>осадка</span><span>1.6 м</span></li>
+        <li><span>двигатель</span><span>Perkins 80 л.с.</span></li>
+        <li><span>команда</span><span>6 человек</span></li>
+      </ul>
+      <div class="caption" style="margin-top:24px; font-family:var(--mono); font-size:13px; color:var(--muted); line-height:1.6;">
+        <b style="color:var(--text);">Классическая лодка.</b><br>
+        Автоматизировано только нужное — осознанно.
+      </div>
+    </div>
+
+    <div class="media">
+      <div class="frame">
+        <span class="frame-meta">img / boat.jpg</span>
+        <picture>
+          <source type="image/avif"
+            srcset="assets/ilka-480.avif 480w, assets/ilka-800.avif 800w, assets/ilka-1200.avif 1200w"
+            sizes="(max-width: 880px) 100vw, 50vw">
+          <source type="image/webp"
+            srcset="assets/ilka-480.webp 480w, assets/ilka-800.webp 800w, assets/ilka-1200.webp 1200w"
+            sizes="(max-width: 880px) 100vw, 50vw">
+          <img src="assets/ilka-800.jpg"
+            srcset="assets/ilka-480.jpg 480w, assets/ilka-800.jpg 800w, assets/ilka-1200.jpg 1200w"
+            sizes="(max-width: 880px) 100vw, 50vw"
+            alt="Ilka — парусник в Ионическом море"
+            loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="caption">
+        <b>Ionian.</b> ветер боковой, видимость низкая.<br>
+        фото — реальный выход.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 7 — КАПИТАН ========== -->
+<section id="captain">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ капитан</span></div>
+      <h2>Финальное решение — за капитаном.</h2>
+    </div>
+
+    <div class="media portrait col-5">
+      <div class="frame">
+        <span class="frame-meta">crew / captain · 01</span>
+        <picture>
+          <source type="image/avif"
+            srcset="assets/nikita-320.avif 320w, assets/nikita-600.avif 600w, assets/nikita-960.avif 960w"
+            sizes="(max-width: 880px) 100vw, 40vw">
+          <source type="image/webp"
+            srcset="assets/nikita-320.webp 320w, assets/nikita-600.webp 600w, assets/nikita-960.webp 960w"
+            sizes="(max-width: 880px) 100vw, 40vw">
+          <img src="assets/nikita-600.jpg"
+            srcset="assets/nikita-320.jpg 320w, assets/nikita-600.jpg 600w, assets/nikita-960.jpg 960w"
+            sizes="(max-width: 880px) 100vw, 40vw"
+            alt="Никита — капитан"
+            loading="lazy" decoding="async">
+        </picture>
+      </div>
+      <div class="caption">
+        <b>Никита</b> — captain<br>
+        safety · route · weather
+      </div>
+    </div>
+
+    <div class="col-7">
+      <div class="sys-grid" style="grid-template-columns: 1fr 1fr;">
+        <div>
+          <h3>под капитаном</h3>
+          <ul class="plain">
+            <li>безопасность</li>
+            <li>маршрут</li>
+            <li>погода</li>
+            <li>стоянки</li>
+            <li>расписание дня</li>
+          </ul>
+        </div>
+        <div>
+          <h3>правило</h3>
+          <ul class="plain">
+            <li>Никакой демократии в критических ситуациях</li>
+          </ul>
+          <h3 style="margin-top:32px;">scope</h3>
+          <ul class="plain">
+            <li>за продукт — отдельная роль</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 8 — МАРШРУТ ========== -->
+<section id="route">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ маршрут</span></div>
+      <h2>Маршрут: адаптивный.</h2>
+    </div>
+
+    <div class="specs">
+      <ul>
+        <li><span>старт</span><span>Корфу</span></li>
+        <li><span>зона</span><span>Ионические острова</span></li>
+        <li><span>длительность</span><span>12 дней</span></li>
+        <li><span>погода</span><span>определяющая</span></li>
+      </ul>
+    </div>
+
+    <div class="specs-text">
+      <blockquote>
+        <p>план будет меняться</p>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 9 — ЧТО ВЗЯТЬ ========== -->
+<section id="take">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ что взять</span></div>
+      <h2>Что взять</h2>
+    </div>
+
+    <div class="list-group">
+      <div>
+        <h3>работа</h3>
+        <ul>
+          <li>ноутбук</li>
+          <li>пауэрбанк</li>
+        </ul>
+      </div>
+      <div>
+        <h3>тело</h3>
+        <ul>
+          <li>тёплый слой</li>
+          <li>защита от ветра</li>
+          <li>личные лекарства</li>
+        </ul>
+      </div>
+      <div>
+        <h3>сумка</h3>
+        <ul>
+          <li>мягкая сумка (не чемодан)</li>
+          <li>минимум одежды</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <blockquote><p>ничего лишнего</p></blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 10 — УСЛОВИЯ ========== -->
+<section id="conditions">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ условия</span></div>
+      <h2>Условия</h2>
+    </div>
+
+    <div class="cond-grid">
+      <div>
+        <h3>фиксировано</h3>
+        <div class="price">€500</div>
+        <ul><li>с человека</li></ul>
+      </div>
+      <div>
+        <h3>общее</h3>
+        <div class="price">~€400–500</div>
+        <ul><li>еда, топливо, марины</li></ul>
+      </div>
+      <div>
+        <h3>включено</h3>
+        <ul>
+          <li>место на лодке</li>
+          <li>базовая подготовка</li>
+        </ul>
+      </div>
+      <div>
+        <h3>не включено</h3>
+        <ul class="not">
+          <li>еда</li>
+          <li>топливо</li>
+          <li>марины</li>
+        </ul>
+      </div>
+      <div>
+        <h3>перелёты</h3>
+        <ul class="not">
+          <li>бронируете сами</li>
+        </ul>
+      </div>
+      <div>
+        <h3>страховка</h3>
+        <ul class="not">
+          <li>ваша ответственность</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 11 — НЕ ДЛЯ ВСЕХ ========== -->
+<section id="not-for-you" class="negative">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ не для всех</span></div>
+      <h2>Это не для вас, если</h2>
+    </div>
+
+    <div class="col-8">
+      <ul>
+        <li>Вам нужен комфорт</li>
+        <li>Ожидаете сервис</li>
+        <li>Хотите фиксированный график</li>
+        <li>Избегаете ответственности</li>
+        <li>Не можете работать в неопределённости</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СЕКЦИЯ 12 — CTA ========== -->
+<section id="cta" class="cta">
+  <div class="grid">
+    <div class="col-12">
+      <div class="label"><span>/ join</span></div>
+      <h2><span class="glitch" data-text="Готов?">Готов?</span></h2>
+    </div>
+
+    <div class="col-12" style="display:flex; gap:16px; flex-wrap:wrap;">
+      <a class="btn" href="https://t.me/ilka_crew" rel="noopener">[ telegram · @ilka_crew → ]</a>
+      <a class="btn" href="mailto:crew@ilka.live?subject=Join%20crew%20v0.1">[ email · crew@ilka.live → ]</a>
+    </div>
+
+    <div class="cta-meta">
+      <span>даты: <b>15–27 мая</b></span>
+      <span>команда: <b>не набрана</b></span>
+      <span>статус: <b>открыт</b></span>
+      <span>мест: <b>6</b></span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="grid">
+    <div>ilka.live · v0.1 / crew system · <a href="https://t.me/ilka_crew" rel="noopener">tg: @ilka_crew</a></div>
+    <div>system: active · mode: build</div>
+  </div>
+</footer>
+
+</body>
+</html>

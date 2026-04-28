@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/
+*.swp
+
+# Sources, briefs, originals (local only)
+.src/
+
+# Local Claude notes
+CLAUDE.local.md

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 / not in system — ilka.live</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#070B12">
+  <style>
+    :root {
+      --bg:#070B12; --text:#fff; --muted:#6B7A8C; --accent:#2EE6FF;
+      --mono: ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); }
+    body {
+      font-family: var(--mono);
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: flex-start;
+      padding: 32px 64px;
+    }
+    main { max-width: 560px; }
+    h1 {
+      font-size: clamp(80px, 14vw, 180px);
+      color: var(--accent);
+      margin: 0 0 24px;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      font-family: ui-sans-serif, "Inter", system-ui, sans-serif;
+      font-weight: 700;
+    }
+    .meta { color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .meta b { color: var(--text); font-weight: 500; }
+    .home {
+      display: inline-block;
+      margin-top: 32px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 14px 22px;
+      text-decoration: none;
+      font-size: 13px;
+      transition: background 120ms, color 120ms;
+    }
+    .home:hover { background: var(--accent); color: var(--bg); }
+    @media (max-width: 600px) { body { padding: 24px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>404</h1>
+    <div class="meta">
+      route: <b>not found</b><br>
+      system: <b>still active</b><br>
+      mode: <b>build</b>
+    </div>
+    <a class="home" href="/">[ ← home ]</a>
+  </main>
+</body>
+</html>

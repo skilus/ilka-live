@@ -565,14 +565,22 @@
   }
   #lightbox-close:hover { color: var(--text); }
 
-  /* ---------- MEMBER PHOTO ---------- */
+  /* ---------- MEMBER CARD ---------- */
+  .member-card {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
   .member-photo {
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
     display: block;
-    filter: grayscale(15%);
-    margin-bottom: 16px;
+    filter: grayscale(20%);
+  }
+  @media (max-width: 600px) {
+    .member-card { grid-template-columns: 1fr; }
   }
 
   /* ---------- CAPTAIN PORTRAIT ---------- */
@@ -953,55 +961,61 @@
 
     <div class="col-4">
       <div class="crew-id">captain · co-organizer</div>
-      <picture>
-        <source type="image/avif" srcset="assets/photo-cap-400.avif 400w, assets/photo-cap-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <source type="image/webp" srcset="assets/photo-cap-400.webp 400w, assets/photo-cap-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <img class="member-photo" src="assets/photo-cap-800.jpg" srcset="assets/photo-cap-400.jpg 400w, assets/photo-cap-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Никита Лобушкин" loading="lazy" decoding="async">
-      </picture>
-      <div class="member">
-        <h3>Никита Лобушкин</h3>
-        <div class="role">captain · co-organizer</div>
-        <ul>
-          <li><b>опыт</b> — 7 лет на воде</li>
-          <li><b>дизайнер</b> — 30+ лет</li>
-          <li><b>регионы</b> — Греция, Турция, Черногория</li>
-          <li><b>Ilka</b> — co-owner</li>
-        </ul>
+      <div class="member-card">
+        <picture>
+          <source type="image/avif" srcset="assets/photo-cap-400.avif 400w, assets/photo-cap-800.avif 800w" sizes="120px">
+          <source type="image/webp" srcset="assets/photo-cap-400.webp 400w, assets/photo-cap-800.webp 800w" sizes="120px">
+          <img class="member-photo" src="assets/photo-cap-400.jpg" srcset="assets/photo-cap-400.jpg 400w, assets/photo-cap-800.jpg 800w" sizes="120px" alt="Никита Лобушкин" loading="lazy" decoding="async">
+        </picture>
+        <div class="member">
+          <h3>Никита Лобушкин</h3>
+          <div class="role">captain · co-organizer</div>
+          <ul>
+            <li><b>опыт</b> — 7 лет на воде</li>
+            <li><b>дизайнер</b> — 30+ лет</li>
+            <li><b>регионы</b> — Греция, Турция, Черногория</li>
+            <li><b>Ilka</b> — co-owner</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="col-4">
       <div class="crew-id">co-organizer</div>
-      <picture>
-        <source type="image/avif" srcset="assets/photo-co2-400.avif 400w, assets/photo-co2-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <source type="image/webp" srcset="assets/photo-co2-400.webp 400w, assets/photo-co2-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <img class="member-photo" src="assets/photo-co2-800.jpg" srcset="assets/photo-co2-400.jpg 400w, assets/photo-co2-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Артур Пинчук" loading="lazy" decoding="async">
-      </picture>
-      <div class="member">
-        <h3>Артур Пинчук</h3>
-        <div class="role">co-organizer · IT &amp; ground ops</div>
-        <ul>
-          <li><b>tech entrepreneur</b> — 20+ лет</li>
-          <li><b>founder</b> — <a href="https://mind-dev.com" rel="noopener">mind-dev.com</a></li>
-          <li><b>Ilka</b> — co-owner</li>
-        </ul>
+      <div class="member-card">
+        <picture>
+          <source type="image/avif" srcset="assets/photo-co2-400.avif 400w, assets/photo-co2-800.avif 800w" sizes="120px">
+          <source type="image/webp" srcset="assets/photo-co2-400.webp 400w, assets/photo-co2-800.webp 800w" sizes="120px">
+          <img class="member-photo" src="assets/photo-co2-400.jpg" srcset="assets/photo-co2-400.jpg 400w, assets/photo-co2-800.jpg 800w" sizes="120px" alt="Артур Пинчук" loading="lazy" decoding="async">
+        </picture>
+        <div class="member">
+          <h3>Артур Пинчук</h3>
+          <div class="role">co-organizer · IT &amp; ground ops</div>
+          <ul>
+            <li><b>tech entrepreneur</b> — 20+ лет</li>
+            <li><b>founder</b> — <a href="https://mind-dev.com" rel="noopener">mind-dev.com</a></li>
+            <li><b>Ilka</b> — co-owner</li>
+          </ul>
+        </div>
       </div>
     </div>
 
     <div class="col-4">
       <div class="crew-id">co-organizer</div>
-      <picture>
-        <source type="image/avif" srcset="assets/photo-co1-400.avif 400w, assets/photo-co1-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <source type="image/webp" srcset="assets/photo-co1-400.webp 400w, assets/photo-co1-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
-        <img class="member-photo" src="assets/photo-co1-800.jpg" srcset="assets/photo-co1-400.jpg 400w, assets/photo-co1-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Габиль Тагиев" loading="lazy" decoding="async">
-      </picture>
-      <div class="member">
-        <h3>Габиль Тагиев</h3>
-        <div class="role">co-organizer</div>
-        <ul>
-          <li><b>tech entrepreneur</b></li>
-          <li><b>@mycelium_dao</b></li>
-        </ul>
+      <div class="member-card">
+        <picture>
+          <source type="image/avif" srcset="assets/photo-co1-400.avif 400w, assets/photo-co1-800.avif 800w" sizes="120px">
+          <source type="image/webp" srcset="assets/photo-co1-400.webp 400w, assets/photo-co1-800.webp 800w" sizes="120px">
+          <img class="member-photo" src="assets/photo-co1-400.jpg" srcset="assets/photo-co1-400.jpg 400w, assets/photo-co1-800.jpg 800w" sizes="120px" alt="Габиль Тагиев" loading="lazy" decoding="async">
+        </picture>
+        <div class="member">
+          <h3>Габиль Тагиев</h3>
+          <div class="role">co-organizer</div>
+          <ul>
+            <li><b>tech entrepreneur</b></li>
+            <li><a href="https://t.me/mycelium_dao" rel="noopener">@mycelium_dao</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -1034,35 +1048,22 @@
       <h2>Финальное решение — за капитаном.</h2>
     </div>
 
-    <div class="captain-grid">
+    <div class="sys-grid">
       <div>
-        <picture>
-          <source type="image/avif" srcset="assets/photo-cap-400.avif 400w, assets/photo-cap-800.avif 800w" sizes="280px">
-          <source type="image/webp" srcset="assets/photo-cap-400.webp 400w, assets/photo-cap-800.webp 800w" sizes="280px">
-          <img class="captain-portrait" src="assets/photo-cap-800.jpg"
-            srcset="assets/photo-cap-400.jpg 400w, assets/photo-cap-800.jpg 800w"
-            sizes="280px" alt="Никита Лобушкин — капитан" loading="lazy" decoding="async">
-        </picture>
+        <h3>под капитаном</h3>
+        <ul class="plain">
+          <li>безопасность</li>
+          <li>маршрут</li>
+          <li>погода</li>
+          <li>стоянки</li>
+          <li>расписание дня</li>
+        </ul>
       </div>
       <div>
-        <div class="sys-grid" style="grid-column: unset;">
-          <div>
-            <h3>под капитаном</h3>
-            <ul class="plain">
-              <li>безопасность</li>
-              <li>маршрут</li>
-              <li>погода</li>
-              <li>стоянки</li>
-              <li>расписание дня</li>
-            </ul>
-          </div>
-          <div>
-            <h3>правило</h3>
-            <ul class="plain">
-              <li>Никакой демократии в критических ситуациях</li>
-            </ul>
-          </div>
-        </div>
+        <h3>правило</h3>
+        <ul class="plain">
+          <li>Никакой демократии в критических ситуациях</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1231,9 +1232,9 @@
 
     <div class="cta-meta">
       <span>даты: <b>15–27 мая</b></span>
-      <span>команда: <b>не набрана</b></span>
+      <span>команда: <b>частично собрана</b></span>
       <span>статус: <b>открыт</b></span>
-      <span>мест: <b>6</b></span>
+      <span>мест: <b>4 из 6 свободны</b></span>
     </div>
   </div>
 </section>

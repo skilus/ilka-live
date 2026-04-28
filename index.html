@@ -220,6 +220,28 @@
   blockquote p { margin: 4px 0; color: var(--muted); }
   blockquote p::before { content: "> "; color: var(--accent); }
 
+  /* ---------- ROLES / PROCESS GRID ---------- */
+  .process {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+  }
+  .process > div {
+    padding: 32px 24px;
+    border-right: 1px solid var(--line);
+    font-family: var(--mono);
+  }
+  .process > div:last-child { border-right: 0; }
+  .process .id { color: var(--accent); font-size: 12px; }
+  .process .name { font-size: 22px; color: var(--text); margin-top: 12px; font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; }
+  @media (max-width: 880px) {
+    .process { grid-template-columns: 1fr; }
+    .process > div { border-right: 0; border-bottom: 1px solid var(--line); }
+    .process > div:last-child { border-bottom: 0; }
+  }
+
   /* ---------- PHASES ---------- */
   .phases-grid {
     grid-column: span 12;
@@ -542,6 +564,16 @@
     padding: 8px;
   }
   #lightbox-close:hover { color: var(--text); }
+
+  /* ---------- MEMBER PHOTO ---------- */
+  .member-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%);
+    margin-bottom: 16px;
+  }
 
   /* ---------- CAPTAIN PORTRAIT ---------- */
   .captain-grid {
@@ -921,6 +953,11 @@
 
     <div class="col-4">
       <div class="crew-id">captain · co-organizer</div>
+      <picture>
+        <source type="image/avif" srcset="assets/photo-cap-400.avif 400w, assets/photo-cap-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <source type="image/webp" srcset="assets/photo-cap-400.webp 400w, assets/photo-cap-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <img class="member-photo" src="assets/photo-cap-800.jpg" srcset="assets/photo-cap-400.jpg 400w, assets/photo-cap-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Никита Лобушкин" loading="lazy" decoding="async">
+      </picture>
       <div class="member">
         <h3>Никита Лобушкин</h3>
         <div class="role">captain · co-organizer</div>
@@ -935,6 +972,11 @@
 
     <div class="col-4">
       <div class="crew-id">co-organizer</div>
+      <picture>
+        <source type="image/avif" srcset="assets/photo-co2-400.avif 400w, assets/photo-co2-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <source type="image/webp" srcset="assets/photo-co2-400.webp 400w, assets/photo-co2-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <img class="member-photo" src="assets/photo-co2-800.jpg" srcset="assets/photo-co2-400.jpg 400w, assets/photo-co2-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Артур Пинчук" loading="lazy" decoding="async">
+      </picture>
       <div class="member">
         <h3>Артур Пинчук</h3>
         <div class="role">co-organizer · IT &amp; ground ops</div>
@@ -948,6 +990,11 @@
 
     <div class="col-4">
       <div class="crew-id">co-organizer</div>
+      <picture>
+        <source type="image/avif" srcset="assets/photo-co1-400.avif 400w, assets/photo-co1-800.avif 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <source type="image/webp" srcset="assets/photo-co1-400.webp 400w, assets/photo-co1-800.webp 800w" sizes="(max-width:880px) 100vw, 33vw">
+        <img class="member-photo" src="assets/photo-co1-800.jpg" srcset="assets/photo-co1-400.jpg 400w, assets/photo-co1-800.jpg 800w" sizes="(max-width:880px) 100vw, 33vw" alt="Габиль Тагиев" loading="lazy" decoding="async">
+      </picture>
       <div class="member">
         <h3>Габиль Тагиев</h3>
         <div class="role">co-organizer</div>

@@ -460,6 +460,108 @@
   }
 
   ::selection { background: var(--accent); color: var(--bg); }
+
+  /* ---------- PHOTO BREAK ---------- */
+  .photo-break {
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .photo-break picture, .photo-break img {
+    display: block;
+    width: 100%;
+    height: clamp(280px, 50vw, 640px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ---------- GALLERY ---------- */
+  #gallery { padding-top: 0; }
+  .gallery-label { padding: 0 64px 24px; }
+  .gallery-slider {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 0 64px 48px;
+    cursor: grab;
+  }
+  .gallery-slider::-webkit-scrollbar { display: none; }
+  .gallery-slider:active { cursor: grabbing; }
+  .gallery-slide {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    height: 480px;
+    width: auto;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+  }
+  .gallery-slide img {
+    height: 100%;
+    width: auto;
+    display: block;
+    transition: opacity 120ms;
+  }
+  .gallery-slide:hover img { opacity: 0.85; }
+  @media (max-width: 880px) {
+    .gallery-label { padding: 0 24px 16px; }
+    .gallery-slider { padding: 0 24px 32px; gap: 8px; }
+    .gallery-slide { height: 300px; }
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(7,11,18,0.96);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 92vw;
+    max-height: 92vh;
+    object-fit: contain;
+    display: block;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 24px; right: 32px;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 13px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 8px;
+  }
+  #lightbox-close:hover { color: var(--text); }
+
+  /* ---------- CAPTAIN PORTRAIT ---------- */
+  .captain-grid {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .captain-portrait {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%);
+  }
+  @media (max-width: 880px) {
+    .captain-grid { grid-template-columns: 1fr; gap: 24px; }
+    .captain-portrait { max-width: 240px; }
+  }
 </style>
 </head>
 <body>
@@ -470,13 +572,13 @@
   <div class="hero-bg" aria-hidden="true">
     <picture>
       <source type="image/avif"
-        srcset="assets/ilka-it-480.avif 480w, assets/ilka-it-800.avif 800w, assets/ilka-it-1200.avif 1200w, assets/ilka-it-1600.avif 1600w"
+        srcset="assets/photo-10-480.avif 480w, assets/photo-10-800.avif 800w, assets/photo-10-1200.avif 1200w, assets/photo-10-1600.avif 1600w"
         sizes="100vw">
       <source type="image/webp"
-        srcset="assets/ilka-it-480.webp 480w, assets/ilka-it-800.webp 800w, assets/ilka-it-1200.webp 1200w, assets/ilka-it-1600.webp 1600w"
+        srcset="assets/photo-10-480.webp 480w, assets/photo-10-800.webp 800w, assets/photo-10-1200.webp 1200w, assets/photo-10-1600.webp 1600w"
         sizes="100vw">
-      <img src="assets/ilka-it-1200.jpg"
-        srcset="assets/ilka-it-480.jpg 480w, assets/ilka-it-800.jpg 800w, assets/ilka-it-1200.jpg 1200w, assets/ilka-it-1600.jpg 1600w"
+      <img src="assets/photo-10-1200.jpg"
+        srcset="assets/photo-10-480.jpg 480w, assets/photo-10-800.jpg 800w, assets/photo-10-1200.jpg 1200w, assets/photo-10-1600.jpg 1600w"
         sizes="100vw" alt="" decoding="async" fetchpriority="high">
     </picture>
   </div>
@@ -552,6 +654,21 @@
     </div>
   </div>
 </section>
+
+<!-- ========== PHOTO 9 ========== -->
+<div class="photo-break">
+  <picture>
+    <source type="image/avif"
+      srcset="assets/photo-9-800.avif 800w, assets/photo-9-1200.avif 1200w, assets/photo-9-1600.avif 1600w"
+      sizes="100vw">
+    <source type="image/webp"
+      srcset="assets/photo-9-800.webp 800w, assets/photo-9-1200.webp 1200w, assets/photo-9-1600.webp 1600w"
+      sizes="100vw">
+    <img src="assets/photo-9-1200.jpg"
+      srcset="assets/photo-9-800.jpg 800w, assets/photo-9-1200.jpg 1200w, assets/photo-9-1600.jpg 1600w"
+      sizes="100vw" alt="" loading="lazy" decoding="async">
+  </picture>
+</div>
 
 <!-- ========== PHASES ========== -->
 <section id="phases">
@@ -680,6 +797,21 @@
   </div>
 </section>
 
+<!-- ========== PHOTO 8 ========== -->
+<div class="photo-break">
+  <picture>
+    <source type="image/avif"
+      srcset="assets/photo-8-800.avif 800w, assets/photo-8-1200.avif 1200w, assets/photo-8-1600.avif 1600w"
+      sizes="100vw">
+    <source type="image/webp"
+      srcset="assets/photo-8-800.webp 800w, assets/photo-8-1200.webp 1200w, assets/photo-8-1600.webp 1600w"
+      sizes="100vw">
+    <img src="assets/photo-8-1200.jpg"
+      srcset="assets/photo-8-800.jpg 800w, assets/photo-8-1200.jpg 1200w, assets/photo-8-1600.jpg 1600w"
+      sizes="100vw" alt="" loading="lazy" decoding="async">
+  </picture>
+</div>
+
 <!-- ========== СЕКЦИЯ 6 — ЛОДКА ========== -->
 <section id="boat">
   <div class="grid">
@@ -728,6 +860,54 @@
         фото — реальный выход.
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ========== GALLERY ========== -->
+<section id="gallery">
+  <div class="gallery-label label"><span>/ галерея</span><span class="tag">{ на борту }</span></div>
+  <div class="gallery-slider" id="gallerySlider">
+
+    <div class="gallery-slide" data-src="assets/photo-3-1200.jpg">
+      <picture>
+        <source type="image/avif" srcset="assets/photo-3-800.avif 800w, assets/photo-3-1200.avif 1200w" sizes="auto">
+        <source type="image/webp" srcset="assets/photo-3-800.webp 800w, assets/photo-3-1200.webp 1200w" sizes="auto">
+        <img src="assets/photo-3-800.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
+
+    <div class="gallery-slide" data-src="assets/photo-4-1200.jpg">
+      <picture>
+        <source type="image/avif" srcset="assets/photo-4-800.avif 800w, assets/photo-4-1200.avif 1200w" sizes="auto">
+        <source type="image/webp" srcset="assets/photo-4-800.webp 800w, assets/photo-4-1200.webp 1200w" sizes="auto">
+        <img src="assets/photo-4-800.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
+
+    <div class="gallery-slide" data-src="assets/photo-11-1200.jpg">
+      <picture>
+        <source type="image/avif" srcset="assets/photo-11-800.avif 800w, assets/photo-11-1200.avif 1200w" sizes="auto">
+        <source type="image/webp" srcset="assets/photo-11-800.webp 800w, assets/photo-11-1200.webp 1200w" sizes="auto">
+        <img src="assets/photo-11-800.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
+
+    <div class="gallery-slide" data-src="assets/photo-7-1200.jpg">
+      <picture>
+        <source type="image/avif" srcset="assets/photo-7-800.avif 800w, assets/photo-7-1200.avif 1200w" sizes="auto">
+        <source type="image/webp" srcset="assets/photo-7-800.webp 800w, assets/photo-7-1200.webp 1200w" sizes="auto">
+        <img src="assets/photo-7-800.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
+
+    <div class="gallery-slide" data-src="assets/photo-12-1200.jpg">
+      <picture>
+        <source type="image/avif" srcset="assets/photo-12-800.avif 800w, assets/photo-12-1200.avif 1200w" sizes="auto">
+        <source type="image/webp" srcset="assets/photo-12-800.webp 800w, assets/photo-12-1200.webp 1200w" sizes="auto">
+        <img src="assets/photo-12-800.jpg" alt="" loading="lazy" decoding="async">
+      </picture>
+    </div>
+
   </div>
 </section>
 
@@ -807,22 +987,35 @@
       <h2>Финальное решение — за капитаном.</h2>
     </div>
 
-    <div class="sys-grid">
+    <div class="captain-grid">
       <div>
-        <h3>под капитаном</h3>
-        <ul class="plain">
-          <li>безопасность</li>
-          <li>маршрут</li>
-          <li>погода</li>
-          <li>стоянки</li>
-          <li>расписание дня</li>
-        </ul>
+        <picture>
+          <source type="image/avif" srcset="assets/photo-cap-400.avif 400w, assets/photo-cap-800.avif 800w" sizes="280px">
+          <source type="image/webp" srcset="assets/photo-cap-400.webp 400w, assets/photo-cap-800.webp 800w" sizes="280px">
+          <img class="captain-portrait" src="assets/photo-cap-800.jpg"
+            srcset="assets/photo-cap-400.jpg 400w, assets/photo-cap-800.jpg 800w"
+            sizes="280px" alt="Никита Лобушкин — капитан" loading="lazy" decoding="async">
+        </picture>
       </div>
       <div>
-        <h3>правило</h3>
-        <ul class="plain">
-          <li>Никакой демократии в критических ситуациях</li>
-        </ul>
+        <div class="sys-grid" style="grid-column: unset;">
+          <div>
+            <h3>под капитаном</h3>
+            <ul class="plain">
+              <li>безопасность</li>
+              <li>маршрут</li>
+              <li>погода</li>
+              <li>стоянки</li>
+              <li>расписание дня</li>
+            </ul>
+          </div>
+          <div>
+            <h3>правило</h3>
+            <ul class="plain">
+              <li>Никакой демократии в критических ситуациях</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -999,6 +1192,53 @@
 </section>
 
 </main>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Фото">
+  <button id="lightbox-close">[ ESC / закрыть ]</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+(function() {
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  var lbClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.gallery-slide').forEach(function(slide) {
+    slide.addEventListener('click', function() {
+      lbImg.src = slide.dataset.src;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function close() {
+    lb.classList.remove('open');
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', close);
+  lb.addEventListener('click', function(e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') close(); });
+
+  // drag-to-scroll for slider
+  var slider = document.getElementById('gallerySlider');
+  var isDown = false, startX, scrollLeft;
+  slider.addEventListener('mousedown', function(e) {
+    isDown = true; startX = e.pageX - slider.offsetLeft; scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', function() { isDown = false; });
+  slider.addEventListener('mouseup', function() { isDown = false; });
+  slider.addEventListener('mousemove', function(e) {
+    if (!isDown) return;
+    e.preventDefault();
+    var x = e.pageX - slider.offsetLeft;
+    slider.scrollLeft = scrollLeft - (x - startX);
+  });
+})();
+</script>
 
 <footer>
   <div class="grid">
